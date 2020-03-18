@@ -3,18 +3,17 @@ MAINTAINER docker@northscaler.com
 
 LABEL version=0.1.0-pre.0
 
-ARG VERSION
-
-# ENV BASE_URL="https://storage.googleapis.com/kubernetes-helm"
+ENV HELM_VERSION=3.1.2
 ENV BASE_URL="https://get.helm.sh"
-ENV TAR_FILE="helm-v${VERSION}-linux-amd64.tar.gz"
+ENV TAR_FILE="helm-v${HELM_VERSION}-linux-amd64.tar.gz"
 
-RUN apk add --update --no-cache curl ca-certificates && \
-    curl -L ${BASE_URL}/${TAR_FILE} | tar xvz && \
-    mv linux-amd64/helm /usr/bin/helm && \
-    chmod +x /usr/bin/helm && \
-    rm -rf linux-amd64 && \
-    apk del curl && \
-    rm -f /var/cache/apk/*
+RUN apk add --update --no-cache curl ca-certificates
+RUN curl -sSL ${BASE_URL}/${TAR_FILE} | tar xvz
+RUN mv linux-amd64/helm /usr/bin/helm
+RUN chmod +x /usr/bin/helm
+RUN rm -rf linux-amd64
+RUN apk del curl
+RUN rm -f /var/cache/apk/*
 
-ENTRYPOINT ["ash"]
+RUN adduser -S -D -u 1001 -G root user
+USER 1001
