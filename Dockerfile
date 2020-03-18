@@ -1,7 +1,7 @@
 FROM docker:19.03.8
 MAINTAINER docker@northscaler.com
 
-LABEL version=0.1.0-rc.0
+LABEL version=0.1.0-rc.1
 
 ENV HELM_VERSION=3.1.2
 ENV BASE_URL="https://get.helm.sh"
