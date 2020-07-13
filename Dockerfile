@@ -1,7 +1,7 @@
 FROM docker:19.03.8
 MAINTAINER docker@northscaler.com
 
-LABEL version=0.2.0-pre.0
+LABEL version=0.2.0-rc.0
 
 # Install node
 ARG NODE_VERSION=12.18.2
@@ -10,9 +10,8 @@ COPY install-node.sh .
 RUN ./install-node.sh
 RUN rm install-node.sh
 
-RUN npm install -g ymlx \
-  # smoke test
-  && ymlx --version
+RUN npm install -g ymlx   # smoke test
+&& ymlx --version
 
 # Install helm
 
