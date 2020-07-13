@@ -1,7 +1,7 @@
 FROM docker:19.03.8
 MAINTAINER docker@northscaler.com
 
-LABEL version=0.2.0-rc.1
+LABEL version=0.2.0
 
 # Install node
 ARG NODE_VERSION=12.18.2
