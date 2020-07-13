@@ -3,6 +3,19 @@ MAINTAINER docker@northscaler.com
 
 LABEL version=0.2.0-pre.0
 
+# Install node
+ARG NODE_VERSION=12.18.2
+
+COPY install-node.sh .
+RUN ./install-node.sh
+RUN rm install-node.sh
+
+RUN npm install -g ymlx \
+  # smoke test
+  && ymlx --version
+
+# Install helm
+
 ENV HELM_VERSION=3.1.2
 ENV BASE_URL="https://get.helm.sh"
 ENV TAR_FILE="helm-v${HELM_VERSION}-linux-amd64.tar.gz"
