@@ -10,8 +10,7 @@ COPY install-node.sh .
 RUN ./install-node.sh
 RUN rm install-node.sh
 
-RUN npm install -g ymlx   # smoke test
-&& ymlx --version
+RUN npm install -g ymlx && ymlx --version
 
 # Install helm
 
